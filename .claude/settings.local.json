@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(docker-compose up *)",
+      "Bash(docker-compose logs *)",
+      "Bash(docker-compose ps *)",
+      "Bash(grep *)",
+      "Bash(docker-compose exec *)",
+      "Bash(docker exec remind-invoice-db-1 *)",
+      "Bash(docker exec *)",
+      "Bash(python -c \"from app.services import reminder_service; print\\('import OK'\\)\")",
+      "Bash(curl -s -X POST \"http://localhost:8000/api/v1/reminders/rules\" -H \"Content-Type: application/json\" -d '{\"name\":\"test\",\"trigger_type\":\"before_due\",\"days_offset\":1}')",
+      "Bash(curl -s -X POST \"http://localhost:8000/api/v1/auth/login\" -H \"Content-Type: application/x-www-form-urlencoded\" -d \"username=kombaraj@gmail.com&password=test123\")",
+      "Bash(curl -s -X POST \"http://localhost:8000/api/v1/auth/register\" -H \"Content-Type: application/json\" -d '{\"email\":\"debugtest@test.com\",\"password\":\"Password123!\",\"full_name\":\"Debug Test\"}')",
+      "Bash(curl -s -X POST \"http://localhost:8000/api/v1/auth/login\" -H \"Content-Type: application/x-www-form-urlencoded\" -d \"username=debugtest@test.com&password=Password123!\")",
+      "Bash(pip show *)",
+      "Bash(alembic upgrade *)",
+      "Bash(python -m alembic upgrade head)",
+      "Bash(python -c \"import sys; print\\(sys.executable\\)\")",
+      "Bash(ls venv/)",
+      "Bash(ls .venv/)",
+      "PowerShell(& \"C:\\\\Users\\\\komba\\\\AppData\\\\Local\\\\Microsoft\\\\WindowsApps\\\\python3.11.exe\" -c \"import alembic; print\\(alembic.__version__\\)\" 2>&1)",
+      "PowerShell(docker exec remind-invoice-backend-1 *)",
+      "PowerShell(docker cp *)",
+      "PowerShell(docker exec remind-invoice-db-1 *)",
+      "PowerShell(docker exec remind-invoice-beat-1 *)",
+      "PowerShell(docker cp \"C:\\\\Kombaraj\\\\Study\\\\SocialEagle\\\\Project Ideas\\\\Project-2\\\\remind-invoice\\\\backend\\\\app\\\\workers\\\\celery_app.py\" remind-invoice-beat-1:/app/app/workers/celery_app.py 2>&1; docker cp \"C:\\\\Kombaraj\\\\Study\\\\SocialEagle\\\\Project Ideas\\\\Project-2\\\\remind-invoice\\\\backend\\\\app\\\\workers\\\\celery_app.py\" remind-invoice-worker-1:/app/app/workers/celery_app.py 2>&1; docker restart remind-invoice-beat-1 remind-invoice-worker-1 2>&1)",
+      "PowerShell(docker exec remind-invoice-beat-1 rm -f /app/celerybeat-schedule; docker restart remind-invoice-beat-1 2>&1)",
+      "PowerShell(docker cp \"C:\\\\Kombaraj\\\\Study\\\\SocialEagle\\\\Project Ideas\\\\Project-2\\\\remind-invoice\\\\backend\\\\app\\\\workers\\\\celery_app.py\" remind-invoice-beat-1:/app/app/workers/celery_app.py; docker cp \"C:\\\\Kombaraj\\\\Study\\\\SocialEagle\\\\Project Ideas\\\\Project-2\\\\remind-invoice\\\\backend\\\\app\\\\workers\\\\celery_app.py\" remind-invoice-worker-1:/app/app/workers/celery_app.py; docker exec remind-invoice-beat-1 rm -f /app/celerybeat-schedule; docker restart remind-invoice-beat-1 remind-invoice-worker-1 2>&1)",
+      "PowerShell(docker cp \"C:\\\\Kombaraj\\\\Study\\\\SocialEagle\\\\Project Ideas\\\\Project-2\\\\remind-invoice\\\\backend\\\\app\\\\services\\\\auth_service.py\" remind-invoice-backend-1:/app/app/services/auth_service.py 2>&1; docker restart remind-invoice-backend-1 2>&1)",
+      "PowerShell(docker cp \"C:\\\\Kombaraj\\\\Study\\\\SocialEagle\\\\Project Ideas\\\\Project-2\\\\remind-invoice\\\\backend\\\\app\\\\auth\\\\jwt.py\" remind-invoice-backend-1:/app/app/auth/jwt.py; docker restart remind-invoice-backend-1 2>&1)"
+    ]
+  }
+}

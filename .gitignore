@@ -1,0 +1,73 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+coverage.xml
+*.cover
+*.log
+
+# ---- Node ----
+node_modules/
+.next/
+out/
+.nuxt/
+*.tsbuildinfo
+npm-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ---- Environment / Secrets ----
+.env
+.env.local
+.env.*.local
+!.env.example
+!.env.local.example
+
+# ---- IDE ----
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# ---- OS ----
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ---- Uploads / user data ----
+backend/uploads/
+uploads/
+
+# ---- Database ----
+*.db
+*.sqlite3
+
+# ---- Docker ----
+*.dockerignore
+
+# ---- Coverage / reports ----
+coverage/
+.nyc_output/
+
+skills/
+PRPs/
+agents/
