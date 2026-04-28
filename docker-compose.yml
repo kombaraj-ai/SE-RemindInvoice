@@ -43,14 +43,24 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-    ports:
-      - "8000:8000"
     volumes:
       - uploads_data:/app/uploads
     command: >
       sh -c "mkdir -p /app/uploads/pdfs &&
              alembic upgrade head &&
              uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 2"
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import socket; s=socket.socket(); s.connect(('localhost',8000)); s.close()\""]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.remind-backend.rule=Host(`api.remindinvoice.cloud`)"
+      - "traefik.http.routers.remind-backend.entrypoints=websecure"
+      - "traefik.http.routers.remind-backend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.remind-backend.loadbalancer.server.port=8000"
 
   worker:
     build:
@@ -96,15 +106,19 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_API_URL: http://localhost:8000/api/v1
+        NEXT_PUBLIC_API_URL: https://api.remindinvoice.cloud/api/v1
     restart: unless-stopped
     env_file: .env
     environment:
-      NEXT_PUBLIC_API_URL: http://localhost:8000/api/v1
-    ports:
-      - "3000:3000"
+      NEXT_PUBLIC_API_URL: https://api.remindinvoice.cloud/api/v1
     depends_on:
       - backend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.remind-frontend.rule=Host(`remindinvoice.cloud`) || Host(`www.remindinvoice.cloud`)"
+      - "traefik.http.routers.remind-frontend.entrypoints=websecure"
+      - "traefik.http.routers.remind-frontend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.remind-frontend.loadbalancer.server.port=3000"
 
 volumes:
   postgres_data:
